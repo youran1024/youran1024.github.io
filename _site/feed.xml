@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-06-04T11:59:06+08:00</updated><id>/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">LaTex渲染的说明和测试</title><link href="/2019/07/24/math-test.html" rel="alternate" type="text/html" title="LaTex渲染的说明和测试" /><published>2019-07-24T00:00:00+08:00</published><updated>2019-07-24T00:00:00+08:00</updated><id>/2019/07/24/math-test</id><content type="html" xml:base="/2019/07/24/math-test.html">&lt;p&gt;LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$&lt;/code&gt;标明，内联公式则用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$&lt;/code&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Your awesome title</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 04 Jun 2021 12:07:37 +0800</pubDate>
+    <lastBuildDate>Fri, 04 Jun 2021 12:07:37 +0800</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>LaTex渲染的说明和测试</title>
+        <description>&lt;p&gt;LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$&lt;/code&gt;标明，内联公式则用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;最好不要让公式出现在文章摘要里。&lt;/p&gt;
 
@@ -33,7 +46,23 @@ y = y(x,t) &amp;amp;= A e^{i\theta} \\
 \end{align*}\]
 
 &lt;p&gt;Inline math test &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lim_{x \to \infty} \exp(-x) = 0$&lt;/code&gt;, 
-$\lim_{x \to \infty} \exp(-x) = 0$&lt;/p&gt;</content><author><name></name></author><category term="sample" /><category term="document" /><summary type="html">LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用$$标明，内联公式则用$.</summary></entry><entry><title type="html">LOFFER使用基础教程</title><link href="/2019/06/02/document.html" rel="alternate" type="text/html" title="LOFFER使用基础教程" /><published>2019-06-02T00:00:00+08:00</published><updated>2019-06-02T00:00:00+08:00</updated><id>/2019/06/02/document</id><content type="html" xml:base="/2019/06/02/document.html">&lt;p&gt;LOFFER是个可以帮助你get off from LOFTER的软件（我知道这个pun很烂）。&lt;/p&gt;
+$\lim_{x \to \infty} \exp(-x) = 0$&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 24 Jul 2019 00:00:00 +0800</pubDate>
+        <link>/2019/07/24/math-test.html</link>
+        <guid isPermaLink="true">/2019/07/24/math-test.html</guid>
+        
+        <category>sample</category>
+        
+        <category>document</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LOFFER使用基础教程</title>
+        <description>&lt;p&gt;LOFFER是个可以帮助你get off from LOFTER的软件（我知道这个pun很烂）。&lt;/p&gt;
 
 &lt;p&gt;这是一个可以直接发布在GitHub page的Jekyll博客，你不需要编写代码或使用命令行即可配置属于你的LOFFER。&lt;/p&gt;
 
@@ -210,7 +239,22 @@ comments: true
 
 &lt;p&gt;最后，回到&lt;a href=&quot;https://github.com/FromEndWorld/LOFFER&quot;&gt;LOFFER&lt;/a&gt;，给我点一个☆吧！&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/FromEndWorld/LOFFER/master/images/givemefive.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;</content><author><name>来自中世界</name></author><category term="sample" /><category term="document" /><summary type="html">LOFFER是个可以帮助你get off from LOFTER的软件（我知道这个pun很烂）。</summary></entry><entry><title type="html">Markdown语法简介</title><link href="/2013/07/16/chinese-markdown-cheatsheet.html" rel="alternate" type="text/html" title="Markdown语法简介" /><published>2013-07-16T00:00:00+08:00</published><updated>2013-07-16T00:00:00+08:00</updated><id>/2013/07/16/chinese-markdown-cheatsheet</id><content type="html" xml:base="/2013/07/16/chinese-markdown-cheatsheet.html">&lt;p&gt;本中文版Markdown语法简介来自博客 &lt;a href=&quot;https://blog.shengbin.me/posts/markdown-syntax&quot;&gt;https://blog.shengbin.me/posts/markdown-syntax&lt;/a&gt;，并由我完成了汉化。其中的站位文字来自&lt;a href=&quot;https://suulnnka.github.io/BullshitGenerator/index.html&quot;&gt;狗屁不通文章生成器&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/FromEndWorld/LOFFER/master/images/givemefive.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
+        <link>/2019/06/02/document.html</link>
+        <guid isPermaLink="true">/2019/06/02/document.html</guid>
+        
+        <category>sample</category>
+        
+        <category>document</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Markdown语法简介</title>
+        <description>&lt;p&gt;本中文版Markdown语法简介来自博客 &lt;a href=&quot;https://blog.shengbin.me/posts/markdown-syntax&quot;&gt;https://blog.shengbin.me/posts/markdown-syntax&lt;/a&gt;，并由我完成了汉化。其中的站位文字来自&lt;a href=&quot;https://suulnnka.github.io/BullshitGenerator/index.html&quot;&gt;狗屁不通文章生成器&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://daringfireball.net/projects/markdown/syntax&quot;&gt;Markdown语法的完整文档在这里&lt;/a&gt;。下面整理的这些为了方便写博客时参考。&lt;/p&gt;
 
@@ -424,4 +468,18 @@ comments: true
 
 &lt;h2 id=&quot;转义字符&quot;&gt;转义字符&lt;/h2&gt;
 
-&lt;p&gt;如果需要使用以上标记字符而不被Markdown理解为格式标记，需要用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\&lt;/code&gt;转义：例如&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\\&lt;/code&gt;，效果为\。&lt;/p&gt;</content><author><name></name></author><category term="sample" /><category term="markdown" /><summary type="html">本中文版Markdown语法简介来自博客 https://blog.shengbin.me/posts/markdown-syntax，并由我完成了汉化。其中的站位文字来自狗屁不通文章生成器。</summary></entry></feed>
+&lt;p&gt;如果需要使用以上标记字符而不被Markdown理解为格式标记，需要用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\&lt;/code&gt;转义：例如&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\\&lt;/code&gt;，效果为\。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 Jul 2013 00:00:00 +0800</pubDate>
+        <link>/2013/07/16/chinese-markdown-cheatsheet.html</link>
+        <guid isPermaLink="true">/2013/07/16/chinese-markdown-cheatsheet.html</guid>
+        
+        <category>sample</category>
+        
+        <category>markdown</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

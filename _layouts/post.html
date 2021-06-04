@@ -2,51 +2,18 @@
 layout: default
 ---
 
-<article class="posts">
-  <h1>{{ page.title }}</h1>
+<article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="{{page.date | date: date_to_xmlschema}}" itemprop="datePublished" class="post-meta__date date">{{page.date | date: "%F"}}</time> &#8226; <span class="post-meta__tags tags">{{page.tags | join:' '}}</span>
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
 
-  <div clsss="meta">
-    <span class="author">
-      {{ page.author }}
-    </span>
-
-    <span class="date">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </span>
-
-    <ul class="tag">
-      {% for tag in page.tags %}
-      <li>
-        <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-          {{ tag }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="entry">
+  <section class="post">
     {{ content }}
-  </div>
-
-  {% include disqus.html %}
-  {% include utteranc.html %}
-  {% include gitalk.html %}
+  </section>
 </article>
 
-<div class="pagination">
-  {% if page.previous.url %}
-    <span class="prev" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
-        ← 上一篇
-      </a>
-    </span>
-  {% endif %}
-  {% if page.next.url %}
-    <span class="next" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
-        下一篇 →
-      </a>
-    </span>
-  {% endif %}
-</div>
+{% include read-more.html %}
+{% include comments.html %}

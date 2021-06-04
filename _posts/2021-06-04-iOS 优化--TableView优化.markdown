@@ -1,5 +1,3 @@
-## iOS 优化 - TableView优化
-
 Table的优化就是指在滑动tableView列表的时候，怎么能够更顺滑。
 我们最重要做到，快、快、快、使劲划的时候，界面流畅、交互响应快、让人极度舒适。
 
@@ -75,8 +73,12 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 ### 参考博文：
 [iOS 深入分析大图显示问题](https://juejin.cn/post/68449035975498137670)
+
 [iOS 处理图片的一些小 Tip, 大神的文章，值得看看](https://blog.ibireme.com/2015/11/02/ios_image_tips)
+
 [iOS 保持界面流畅的技巧](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)
+
 [VVeboTableViewDemo](https://github.com/johnil/VVeboTableViewDemo)
+
 [FDTemplateLayoutCell](http://blog.sunnyxx.com/2015/05/17/cell-height-calculation/)
 

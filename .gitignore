@@ -9,4 +9,4 @@ nopfile/
 package_cache/
 nohup.out
 .DS_Store
-
+.jekyll-cache/Jekyll/Cache

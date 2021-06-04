@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>404 - Page not found –  – Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</title>
+  <title>LaTex渲染的说明和测试 –  – Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</title>
 
       <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
@@ -9,14 +9,16 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
     
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
-    <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+    <meta name="description" content="LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用$$标明，内联公式则用$.
+" />
+    <meta property="og:description" content="LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用$$标明，内联公式则用$.
+" />
     
     <meta name="author" content="" />
 
     
-    <meta property="og:title" content="404 - Page not found" />
-    <meta property="twitter:title" content="404 - Page not found" />
+    <meta property="og:title" content="LaTex渲染的说明和测试" />
+    <meta property="twitter:title" content="LaTex渲染的说明和测试" />
     
   <!-- Async font loading -->
 <script>
@@ -134,18 +136,92 @@
 
     <div id="main" role="main" class="wrapper-content">
       <div class="container">
-        <article class="page">
+        <article class="posts">
+  <h1>LaTex渲染的说明和测试</h1>
 
-  <h1>404 - Page not found</h1>
+  <div clsss="meta">
+    <span class="author">
+      
+    </span>
+
+    <span class="date">
+      2019-07-24
+    </span>
+
+    <ul class="tag">
+      
+      <li>
+        <a href="/tags#sample">
+          sample
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags#document">
+          document
+        </a>
+      </li>
+      
+    </ul>
+  </div>
 
   <div class="entry">
-    <p>Sorry, we can’t find that page that you’re looking for. You can try again by going <a href="/">back to the homepage</a>.</p>
+    <p>LaTeX渲染已经在全站头部文件引入，可以直接使用，公式块上下使用<code class="language-plaintext highlighter-rouge">$$</code>标明，内联公式则用<code class="language-plaintext highlighter-rouge">$</code>.</p>
 
-<p><a href="/"><img src="/images/404.jpg" alt="Constructocat by https://github.com/jasoncostello" style="width: 400px;" class="center-image" /></a></p>
+<p>最好不要让公式出现在文章摘要里。</p>
+
+<p>Jekyll的默认文章摘要是第一段，但是我在使用中发现它选取摘要不是很稳定，因此加入了手动摘要分割线，默认为<code class="language-plaintext highlighter-rouge">&lt;!-- more --&gt;</code>，并且加入了首页摘要的字符数限制。</p>
+
+<p>因此有特殊符号、内容的文章，建议将这些内容折叠在摘要以下。例如本文</p>
+
+<!-- more -->
+
+<p>Block math test</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+\begin{align*}
+y = y(x,t) &amp;= A e^{i\theta} \\
+&amp;= A (\cos \theta + i \sin \theta) \\
+&amp;= A (\cos(kx - \omega t) + i \sin(kx - \omega t)) \\
+&amp;= A\cos(kx - \omega t) + i A\sin(kx - \omega t)  \\
+&amp;= A\cos \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big) + i A\sin \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big)  \\
+&amp;= A\cos \frac{2\pi}{\lambda} (x - v t) + i A\sin \frac{2\pi}{\lambda} (x - v t)
+\end{align*}
+$$
+
+</code></pre></div></div>
+
+\[\begin{align*}
+y = y(x,t) &amp;= A e^{i\theta} \\
+&amp;= A (\cos \theta + i \sin \theta) \\
+&amp;= A (\cos(kx - \omega t) + i \sin(kx - \omega t)) \\
+&amp;= A\cos(kx - \omega t) + i A\sin(kx - \omega t)  \\
+&amp;= A\cos \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big) + i A\sin \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big)  \\
+&amp;= A\cos \frac{2\pi}{\lambda} (x - v t) + i A\sin \frac{2\pi}{\lambda} (x - v t)
+\end{align*}\]
+
+<p>Inline math test <code class="language-plaintext highlighter-rouge">$\lim_{x \to \infty} \exp(-x) = 0$</code>, 
+$\lim_{x \to \infty} \exp(-x) = 0$</p>
+
 
   </div>
+
+  
+  
+
+  
 </article>
 
+<div class="pagination">
+  
+    <span class="prev" >
+      <a href="/2019/06/02/document.html">
+        ← 上一篇
+      </a>
+    </span>
+  
+  
+</div>
       </div>
     </div>
 

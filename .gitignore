@@ -1,0 +1,12 @@
+
+# system
+.idea/
+venv5/
+venv1/
+venv/
+.vscode/
+nopfile/
+package_cache/
+nohup.out
+.DS_Store
+

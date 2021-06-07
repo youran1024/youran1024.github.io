@@ -1,0 +1,35 @@
+> wda（webdriverAgent）的默认的键盘输入速度是60，某些场景下，如果有大量的文字要输入的化，这个是效率非常慢的一种方式
+
+#### 方案：
+1. 打开wda工程
+2. 找到如下字段：static NSUInteger FBMaxTypingFrequency = 60;
+3. 修改为较大值，多大需要自己试一下, 最大值为:NSInterMax
+
+![image.png](https://upload-images.jianshu.io/upload_images/299790-4984a7c84086d96d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+4. 另外这个值可以通过，启动wda时的setting中设置，没验证过，需要你自己尝试。（key : `maxTypingFrequency`）
+```
+       capabilities = {
+            'udid': device_info.udid,
+            'deviceName': device_info.name,
+            # 'autoDismissAlerts': True,
+            'platformVersion': device_info.version,
+            'platformName': device_info.plate_form,
+            # 接口超时时间6分钟， 为了后台等待10分钟的Case
+            'newCommandTimeout': SERVICE_TIME_OUT,
+            # 'sendKeyStrategy': 'grouped',
+            # 'maxTypingFrequency': 10000
+        }
+```
+
+#### 方案二：
+1. 私有APi里边有涉及到可以设置属性
+2. 但是需要自己实现
+![image.png](https://upload-images.jianshu.io/upload_images/299790-11cc3cbf3802910c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 方案三：
+1. 使用复制粘贴的能力
+
+
+#### 总结：
+1. 希望能帮到你
+2. 祝你好运

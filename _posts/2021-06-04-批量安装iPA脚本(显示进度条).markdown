@@ -1,0 +1,247 @@
+> 由于管理机房的需要，需要将ipa 安装到机房低下的所有设备中
+
+### 使用方法
+1. 在ipa文件所在目录执行 `python3 batch_ipa_install.py`
+2. 如果只有一个ipa，则直接安装，如果存在多个ipa则显示ipa list
+3. 选择你需要安装的ipa 序号
+
+![image.png](https://upload-images.jianshu.io/upload_images/299790-69046be5ac1b3371.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+### 源码
+```python
+#!/usr/bin/env python3
+# coding=utf-8
+
+"""
+@File   : ipa_installer.py
+@Desc   : 批量安装ipa
+"""
+import os
+import threading
+import subprocess
+from eprogress import LineProgress, MultiProgressManager
+
+
+# 获取设备列表
+UDID_LIST_SHELL = 'idevice_id -l'
+INSTALLER = 'ideviceinstaller'
+CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+
+def execute_cmd(command):
+    """
+    执行命令行获取执行结果, 并对结果去重
+    :param command:
+    :return:
+    """
+    result_list = []
+    with os.popen(command) as f:
+        result = f.readlines()
+    for i in result:
+        if i == '\n':
+            continue
+        result_list.append(i.strip('\n'))
+    result_list = list(set(result_list))
+    return result_list
+
+
+def process_check(sub_process, manager):
+    """
+    子进程监控， 监控进度
+    :param sub_process:
+    :param manager:
+    :return:
+    """
+    last_rate = -1
+    while sub_process["finish"] is False:
+        process = sub_process["process"]
+        device_id = sub_process["device_id"]
+        line = process.stdout.readline().decode().strip()
+        new_crazy = filter(str.isdigit, line)
+        new_crazy = list(new_crazy)
+        if len(new_crazy) == 0:
+            new_crazy = ['0']
+        rate = ''.join(new_crazy)
+        if int(rate) > 100:
+            rate = '0'
+        if last_rate != rate:
+            manager.update(device_id, int(rate))
+            last_rate = rate
+        if 'Complete' in line:
+            manager.update(device_id, 100)
+            sub_process["finish"] = True
+
+
+class BatchIpaInstall:
+    """
+    多设备同时安装手百包
+    """
+
+    def __init__(self, device_id=None):
+        """
+        命令行后可以指定多台设备
+        :param device_id:
+        """
+        _current_devices = self.devices
+        if device_id:
+            if device_id in _current_devices:
+                self.udids = [device_id]
+            else:
+                raise Exception('指定的udid不存在')
+        else:
+            self.udids = []
+
+    @property
+    def devices(self) -> [str]:
+        udids = execute_cmd(UDID_LIST_SHELL)
+        if len(udids) == 0:
+            return []
+        return udids
+
+    @staticmethod
+    def fetch_current_app():
+        """
+        获取当前路径下的ipa文件
+        :return:
+        """
+        _list_apps = []
+        for file in os.listdir('.'):
+            if file.endswith('.ipa'):
+                # return os.path.join(CURRENT_PATH, file)
+                _list_apps.append(file)
+        return _list_apps
+
+    def install(self):
+        """
+        安装
+        :return:
+        """
+        all_devices = self.devices
+        if self.udids and len(self.udids):
+            devices = self.udids
+        else:
+            devices = all_devices
+
+        if not devices or len(devices) == 0:
+            print('没有发现任何iOS设备')
+            return
+        apps = self.fetch_current_app()
+        if not apps or len(apps) == 0:
+            print('没有发现.ipa结尾的文件')
+            return
+
+        case_index = 0
+        if len(apps) > 1:
+            print("请输入要安装ipa的序号")
+            for index, _app in enumerate(apps):
+                print("[%d]:%s" % (index + 1, _app))
+
+            while True:
+                case_index = int(input("请输入Case的index:[eg 1, 2, 3 ...]\n"))
+                if case_index > len(apps):
+                    print("选择错误，请重新选择")
+                    continue
+                break
+        app = apps[case_index - 1]
+        print("即将安装：%s" % app)
+
+        processes = []
+        for device_id in devices:
+            if device_id not in all_devices:
+                print('没有发现设备：' + device_id)
+                continue
+            cmd_shell = INSTALLER + ' -u %s -i %s' % (device_id, app)
+            print('执行的命令：' + cmd_shell)
+            process = subprocess.Popen(
+                cmd_shell,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                bufsize=10,
+                close_fds=True
+            )
+            processes.append(dict(device_id=device_id, finish=False, process=process))
+
+        manager = MultiProgressManager()
+        thread_pool = []
+        for sub_process in processes:
+            device_id = sub_process["device_id"]
+            manager.put(device_id, LineProgress(total=100, title=f"[{device_id}] 安装进度"))
+            thread = threading.Thread(target=process_check, args=(sub_process, manager))
+            thread_pool.append(thread)
+            thread.start()
+        for t in thread_pool:
+            t.join()
+
+
+VERSION_DETAIL = '1.0.0'
+
+
+def print_help():
+    """
+    打印帮助信息
+    """
+    os.system('say --voice="Sin-ji" 您好，我是installer')
+    print("版本信息： " + VERSION_DETAIL)
+    print('''
+@参数说明:（以下皆为可选参数）
+    \033[1;34m--udid -i\033[0m 指定设备安装ipa
+    \033[1;34m--list -l\033[0m 列出所有的设备
+    \033[1;34m--ipa -p\033[0m 罗列所有的ipa
+
+@使用方法:
+    \033[1;34m 1.进入ipa所在文件夹 \033[0m
+    \033[1;34m 2.执行ipa_installer \033[0m
+    \033[1;34m 3.选择要安装的ipa （当前文件夹只有一个ipa，则忽略） \033[0m
+    ''')
+
+
+if __name__ == '__main__':
+    """
+    入口
+    """
+    import sys
+    import getopt
+    from sys import exit
+
+    params = sys.argv[1:]
+    opts, argv = None, None
+    try:
+        opts, argv = getopt.getopt(
+            params, "-u:-l-i-h",
+            ['udid=', 'list', 'ipa', 'help']
+        )
+    except getopt.GetoptError as e:
+        print(" \033[1;31m%s \033[0m" % e)
+        print(" ipa_installer -h to get help")
+        exit()
+    try:
+        for key, value in opts:
+            key = key.replace('--', '')
+            if key in ('-p', "ipa"):
+                _current_ipa = BatchIpaInstall.fetch_current_app()
+                for _ipa in _current_ipa:
+                    print(_ipa)
+            elif key in ('-l', 'list'):
+                _current_device = BatchIpaInstall().devices
+                for _device in _current_device:
+                    print(_device)
+            elif key in ('-h', 'help'):
+                print_help()
+            elif key in ('-i', 'udid'):
+                BatchIpaInstall(value).install()
+            else:
+                print_help()
+            exit()
+        # 安装所有设备
+        BatchIpaInstall().install()
+    except Exception as e:
+        print(e)
+
+```
+
+### 总结
+1. 愿能帮到你
+2. 祝你好运
+3. 使用`pyinstaller`生成cmd工具

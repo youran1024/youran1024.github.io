@@ -1,0 +1,12 @@
+网上找了很多， 但是都不好使， 原来是发现后边少了一个 &
+
+ ```sh
+nohup command& 
+# 例如
+nohup docsify serve& 
+```
+
+nohup 默认写入的文件为`nohup.out`, 如果想更改，可以使用如下命令。一定不要忘了& ，要不进不了后台运行。
+```sh
+nohup command > mineout.out&
+```

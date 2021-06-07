@@ -1,0 +1,42 @@
+![image.png](https://upload-images.jianshu.io/upload_images/299790-6b629a09a375a0b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## [设计目标](#设计目标)
+
+1.  Case通用（双端）
+2.  服务启动自动化
+3.  单Case调试方便
+2.  流程清晰、模块分层合理
+3.  多设备运行（Android&iOS）
+4.  更优雅的写Case，采用链式语法编写Case
+5.  支持接口Mock（mitm的方案， 目前还是弱方案）
+6.  打平双端手百之间的diff（Page层和Business层实现）
+
+## [简单说明](#简单说明)
+#### 1. 服务与设备管理
+ * 负责手机设备的管理（Android 和 iOS）
+ * 负责Appium服务的创建
+ * 负责Appium服务的链接
+#### 2. 驱动管理
+增加驱动层有2个目的
+1. 底层驱动可以自由切换（Appium和wda）
+2. 未来有更好的选择可以更换掉Appium
+
+* wda（网易同学的简易方案）
+* Appium
+
+#### 3. 业务层
+* 所有的业务逻辑（如某个业务流程）
+* 所有的控件管理
+* 双端diff抹平
+* Case管理
+* Case驱动（HTMLReport + unitest）
+
+#### 4. 测试类型
+1. 性能测试
+2. UI自动化测试
+3. 接口异常测试
+4. 其它
+
+
+### 后记
+代码无法更开， 想了解的可以私下联系， 帮你提供一些思路

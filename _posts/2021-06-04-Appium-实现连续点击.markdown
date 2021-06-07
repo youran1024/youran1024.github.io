@@ -1,0 +1,25 @@
+很多同学似乎还不太会用Appium实现点击， 其实很简单， Appium的TouchAction 已经替大家都做好了，稍微封装一下便可。
+* 注意点击的是相对位置
+* iOS已经测试通过
+* Android 还有问题 （Android 点击不上， 如有解决的，还望告知）
+
+```python
+    def tap_el(self, element, times: int):
+        """
+        单击某个控件N次
+        :param element: 要单击的控件
+        :param times: 要单击的次数
+        :return:
+        """
+        def _center_rect(r):
+            center_x = r['width'] / 2.0
+            center_y = r['height'] / 2.0
+            return center_x, center_y
+
+        action = TouchAction(self)
+        center = _center_rect(element.rect)
+        action.tap(element=element,
+                   x=center[0],
+                   y=center[1],
+                   count=times).perform()
+```

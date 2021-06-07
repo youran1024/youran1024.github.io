@@ -1,0 +1,96 @@
+
+## [mobiledevice](https://github.com/imkira/mobiledevice)
+
+#### 主要能力
+* 安装/卸载App
+* 查询通过USB连接到电脑的苹果设备的udid
+* 查询手机安装的App的`bundle identifier`
+* 查询手机属性、属性值
+* 查询App属性、属性值
+* 端口转发/映射，通过USB，在PC端端口上映射移动设备端口号
+
+
+## [libimobiledevice](https://github.com/libimobiledevice)
+
+#### 包含的套件
+* usbmuxd
+* ideviceinstaller
+* idevice*（idevice底下先关其它命令）
+* iproxy
+* ifuse
+
+[图片上传失败...(image-ac67cb-1578886426463)]
+
+
+#### 主要能力
+* 安装/卸载App
+* 获取安装的App和`bundle identifier`
+* 查看系统日志
+* 查询通过USB连接到电脑的苹果设备的udid
+* 截图
+* 查询设备信息
+* 获取设备时间
+* 端口转发/映射，通过USB，在PC端端口上映射移动设备端口号
+* 获取设备名称
+* 文件管理（沙盒文件）
+
+备注
+
+* 获取设备相关信息需要itunes授权，插入设备后选择允许
+
+## [ios-deploy](https://github.com/ios-control/ios-deploy)
+
+#### 主要能力
+* 安装/卸载App
+* 获取当前连接的设备
+* 查看安装的应用
+
+
+
+## xcodebuild
+
+## XCRUN
+
+## SIMCTL
+
+
+#### 后边的内容
+
+提取沙盒文件
+https://www.cnblogs.com/zhouxihi/p/10369580.html
+
+
+### [usbmuxd](https://github.com/libimobiledevice/usbmuxd)
+
+XCRUN
+SIMCTL
+https://gopekannan.wordpress.com/2017/07/14/clu-tool-for-ios-as-like-adb-for-android/
+
+xcodebuild
+
+
+```
+ideviceinfo 获取ios手机信息
+ideviceinfo -x 获取ios手机信息，并以xml形式显示
+
+ideviceinfo -k ProductType 获取手机型号
+ideviceinfo -k ProductVersion 获取系统版本
+ideviceinfo -k DeviceName 获取手机名称
+```
+
+# 常见问题
+
+###安装报错
+尝试重新安装一遍试试
+
+```
+brew uninstall ideviceinstaller
+brew uninstall libimobiledevice
+brew install --HEAD libimobiledevice
+brew link --overwrite libimobiledevice
+brew install ideviceinstaller
+brew link --overwrite ideviceinstaller
+```
+
+
+

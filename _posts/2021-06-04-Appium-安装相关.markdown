@@ -1,0 +1,45 @@
+## 安装[bundletool.jar](http://appium.io/docs/en/writing-running-appium/android/android-appbundle/)
+)
+在执行`appium-docotor` 报错 bundletool.jar cannot be found
+#### 问题索引：
+1. bundletool.jar cannot be found
+2. appium上 bundletool.jar 安装
+
+
+#### 直接安装
+但是此方法并不能被Appium识别
+```
+brew install bundletool
+```
+#### Appium中`bundletool.jar`的安装
+1. 下载 [bundletool.jar](https://github.com/google/bundletool/releases) 
+2. 下载完后改名成`bundletool.jar`
+3. 找到存储位置（我的位置）
+```
+/Users/{YOUR USER}/Library/Android/sdk/bundle-tool/bundletool.jar
+```
+3. 加权限
+```
+chmod +x /{PATH}/bundle-tool/
+chmod +x /{PATH}/bundle-tool/bundletool.jar
+``` 
+3. 增加环境变量 默认的终端的话修改.bash_profile ，因为我用的是zsh，所以修改的是~/.zshrc。末尾追加一条环境变量, 当然前提是你得有`{ANDROID_HOME}`要不就可以写完整路径
+```
+export PATH=${PATH}:${ANDROID_HOME}/bundle-tool/
+
+```
+4. source ~/.zshrc 。可以让配置立即生效
+5. 执行 `which bundletool.jar`
+6. 如果有了地址输出，则任务完成。
+```
+☁  ~  which bundletool.jar
+/Users/{YOURNAME}/Library/Android/sdk/bundle-tool/bundletool.jar
+```
+
+---
+
+## 安装[AppleSimulatorUtils](https://github.com/wix/AppleSimulatorUtils)
+```shell
+brew tap wix/brew
+brew install applesimutils
+```

@@ -1,0 +1,22 @@
+经过一周的折腾终于把升级后的Pycharm不能识别内置库、内置方法、内置函数。。的问题解决了。
+
+如图中所示的报错（复现不出来了， 只能画个红框代替）
+![image.png](https://upload-images.jianshu.io/upload_images/299790-8d15850cf0707d60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+处理思路如下：
+问题的原因就在于此
+## Step1
+![image.png](https://upload-images.jianshu.io/upload_images/299790-234b7e5b4c828735.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Step2
+![image.png](https://upload-images.jianshu.io/upload_images/299790-bc21cd4421b03cda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Step3
+![image.png](https://upload-images.jianshu.io/upload_images/299790-d41674d39cb1c527.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Step4
+涉及到个人的包地址删除掉（到此应该就好了）
+![image.png](https://upload-images.jianshu.io/upload_images/299790-fad25fa17df05eb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Step5
+如果没好，重启一下试试，再没好，就各种删除python3重装试试

@@ -1,0 +1,38 @@
+我运行成功时用到的几个关键字
+```
+{
+  "udid": "5d00e43272746fd85c456dd*******",
+  "app": "/Users/hunter/Desktop/iOSFinancial.app",
+  "platformName": "iOS",
+  "deviceName": "iPhone",
+  "automationName": "XCUITest",
+  "platformVersion": "11.4"
+}
+```
+
+#### 几点需要注意的
+~~1. 直接从网上下载下WDA（webdriverAgent）后运行`build Test `得到的`console里边输出的`地址是：`192.168.**.**:0`port是`0`，未找到具体的原因， 看了segmentfault的解答也未解决，但这并不影响Appium的真机调试， 如果大家也遇到了可以选择忽略，如果解决了，还请回复下解决方案。~~ 最新版的WDA未发现此问题
+
+2. 关于`app` 一定要用真机编译过的App， 真机和模拟器的架构不一样， 如果用模拟器编译的App往真机上安装，是安装不通过的， Appium报
+```
+An unknown server-side error occurred while processing the command.
+ Original error: Could not install app: 'Command 'ios-deploy --id 
+5d00e43272746fd85c456ddcbe52593b64d7f132 --bundle 
+/Users/hunter/Desktop/iOSFinancial.app' exited with code 253'
+```
+3. `automationName `是必须要填写`XCUITest `的
+
+
+#### 小技巧
+UDID 快捷的查找方式是 `idevice_id -l`
+
+#### 参考文献
+**[appium-xcuitest-driver](https://github.com/appium/appium-xcuitest-driver)**
+**[使用Appium进行iOS的真机自动化测试](https://www.jianshu.com/p/ae8846736dba)**
+**[Appium Desired Capabilities](http://appium.io/docs/en/writing-running-appium/caps/index.html)**
+**[Appium原理解析](https://bestswifter.com/appium/)**
+
+#### 祝大家好运！！！
+
+
+

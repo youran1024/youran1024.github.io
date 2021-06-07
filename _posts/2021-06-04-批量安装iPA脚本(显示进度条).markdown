@@ -5,7 +5,7 @@
 2. 如果只有一个ipa，则直接安装，如果存在多个ipa则显示ipa list
 3. 选择你需要安装的ipa 序号
 
-![image.png](https://upload-images.jianshu.io/upload_images/299790-69046be5ac1b3371.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](./img/ipa_installer.jpg)
 
 
 ### 源码
@@ -245,3 +245,5 @@ if __name__ == '__main__':
 1. 愿能帮到你
 2. 祝你好运
 3. 使用`pyinstaller`生成cmd工具
+
+

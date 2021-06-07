@@ -5,7 +5,7 @@
 2. 如果只有一个ipa，则直接安装，如果存在多个ipa则显示ipa list
 3. 选择你需要安装的ipa 序号
 
-![image.png](./img/ipa_installer.jpg)
+![image.png](https://raw.githubusercontent.com/youran1024/youran1024.github.io/main/_posts/img/ipa_installer.jpg)
 
 
 ### 源码

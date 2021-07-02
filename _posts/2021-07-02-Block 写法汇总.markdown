@@ -1,0 +1,275 @@
+## Block 写法汇总
+> Block的写法经常忘记，或者记忆不是很清楚。 特地整理一下帮助大家作为辅助记忆
+> 希望能帮到大家
+
+关键字：`block` `block写法`
+
+## Block 的写法汇总
+
+### As a property:
+```@property (nonatomic, copy) returnType (^blockName)(parameterTypes);```
+```
+/// block
+@property (nonatomic, strong) void(^blcokProperty)(void);
+/// 带参数的block
+@property (nonatomic, copy) UIViewController *(^blockPropertyParam)(NSObject *);
+```
+
+### As a method parameter:
+`- (void)someMethodThatTakesABlock:(returnType (^)(parameterTypes))blockName;`
+```
+- (void)methodWithBlock:(void(^)(void))block{
+    /// method block
+}
+
+- (void)methodWithBlockAndParam:(UIViewController *(^)(NSObject *))block{
+    /// method with param block
+}
+
+```
+
+### As an argument to a method call:
+`[someObject someMethodThatTakesABlock:^returnType (parameters) {...}];`
+
+```
+    /// 调用带无参数的Block
+    [self methodWithBlock:^{
+        NSLog(@"do nothong");
+    }];
+    
+    ///  调用带参数的Block,
+    [self methodWithBlockAndParam:^UIViewController *(NSObject *obj) {
+        return [UIViewController new];
+    }];
+    ///  声明中的返回参数声明， 调用的时候可以省略
+    [self methodWithBlockAndParam:^(NSObject *obj) {
+        return [UIViewController new];
+    }];
+```
+### As a parameter to a C function:
+`void SomeFunctionThatTakesABlock(returnType (^blockName)(parameterTypes));`
+```
+/// c函数的定义
+void cFunctionDefine(void(^cBlock)(void)){
+    cBlock();
+}
+
+/// c函数的定义 block 带参数
+void cFunctionWithParam(UIViewController *(^cBlock)(NSObject *)){
+    cBlock([NSObject new]);
+}
+
+/// 调用
+cFunctionDefine(^{
+        
+});
+cFunctionWithParam(^UIViewController *(NSObject *obj) {
+    return [UIViewController new];
+});
+```
+
+
+### As a typedef:
+`typedef returnType (^TypeName)(parameterTypes);`
+`TypeName blockName = ^returnType(parameters) {...};`
+
+```
+typedef void(^BlockTypedef)(void);
+typedef UIViewController *(^BlockTypedefParam)(NSObject *);
+
+/// 使用typedefine 定义的block
+@property (nonatomic, copy) BlockTypedef blockTypedef;
+/// 使用typedefine 定义的带参block
+@property (nonatomic, copy) BlockTypedefParam blockTypedefParam;
+
+- (void)methodWithBlockTypedef:(BlockTypedef)block{
+    /// method blcok with typedef
+}
+
+- (void)methodWithBlockTypedefAndParam:(BlockTypedefParam)block{
+    ///  method with param block with typedef
+}
+
+- (BlockTypedef)methodReturnBlock{
+    return ^{
+        /// return a block
+    };
+}
+
+- (BlockTypedefParam)methodReturnBlockParam{
+    return ^(NSObject *obj){
+        return [UIViewController new];
+    };
+}
+- (BlockTypedefParam)methodReturnBlockParam01{
+    return ^UIViewController *(NSObject *obj){
+        return [UIViewController new];
+    };
+}
+
+```
+---
+### 完整代码
+
+```
+#import "IndexViewController.h"
+
+typedef void(^BlockTypedef)(void);
+
+typedef UIViewController *(^BlockTypedefParam)(NSObject *);
+
+/// c函数的定义
+void cFunctionDefine(void(^cBlock)(void)){
+    cBlock();
+}
+
+/// c函数的定义 block 带参数
+void cFunctionWithParam(UIViewController *(^cBlock)(NSObject *)){
+    cBlock([NSObject new]);
+}
+
+
+@interface IndexViewController ()
+
+/// block 用strong 标记 或者用copy 标记均可以
+@property (nonatomic, strong) void(^blcokProperty)(void);
+
+/// 带参数的block
+@property (nonatomic, copy) UIViewController *(^blockPropertyParam)(NSObject *);
+/// 使用typedefine 定义的block
+@property (nonatomic, copy) BlockTypedef blockTypedef;
+/// 使用typedefine 定义的带参block
+@property (nonatomic, copy) BlockTypedefParam blockTypedefParam;
+
+@end
+
+@implementation IndexViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    /// 函数体中的Block
+    /// 不带参数
+    void(^bodyBlock)(void) = ^(void) {
+        NSLog(@"do nothing");
+    };
+    /// 简化写法，返回参数&入参声明均可以省略
+    bodyBlock = ^{
+        NSLog(@"do nothing");
+    };
+
+    /// 带参数
+    UIViewController *(^bodyBlockWithParam)(NSObject *) = ^UIViewController *(NSObject *obj) {
+        return [UIViewController new];
+    };
+    /// 简化写法，其中返回参数的声明可以省略
+    bodyBlockWithParam = ^(NSObject *obj) {
+        return [UIViewController new];
+    };
+    
+    /// 使用typedef声明
+    
+    BlockTypedef blockTypedefBody = ^{
+        
+    };
+    blockTypedefBody = ^void(void){
+        
+    };
+    
+    /// 使用tydedef声明的block
+    BlockTypedefParam blockTypedefBodyParam = ^(NSObject *obj){
+        return [UIViewController new];
+    };
+    blockTypedefBodyParam = ^UIViewController *(NSObject *obj){
+        return [UIViewController new];
+    };
+    
+}
+
+
+- (void)methodBlockAction
+{
+    /// 调用带无参数的Block
+    [self methodWithBlock:^{
+        NSLog(@"do nothong");
+    }];
+    
+    [self methodWithBlockTypedef:^{
+        NSLog(@"method blcok with typedef");
+    }];
+    
+    ///  调用带参数的Block
+    [self methodWithBlockAndParam:^UIViewController *(NSObject *obj) {
+        return [UIViewController new];
+    }];
+    ///  调用带参数的Block
+    [self methodWithBlockAndParam:^(NSObject *obj) {
+        return [UIViewController new];
+    }];
+    
+    ///  调用带参数的Block, 声明中的返回参数声明， 调用的时候可以省略
+    [self methodWithBlockTypedefAndParam:^(NSObject *obj) {
+        return [UIViewController new];
+    }];
+    
+    cFunctionDefine(^{
+        
+    });
+    
+    cFunctionWithParam(^UIViewController *(NSObject *obj) {
+        return [UIViewController new];
+    });
+    
+}
+
+- (void)methodWithBlock:(void(^)(void))block
+{
+    /// method block
+}
+
+- (void)methodWithBlockTypedef:(BlockTypedef)block
+{
+    /// method blcok with typedef
+}
+
+- (void)methodWithBlockAndParam:(UIViewController *(^)(NSObject *))block
+{
+    /// method with param block
+}
+
+- (void)methodWithBlockTypedefAndParam:(BlockTypedefParam)block
+{
+    ///  method with param block with typedef
+}
+
+- (BlockTypedef)methodReturnBlock
+{
+    return ^{
+        /// return a block
+    };
+}
+
+- (BlockTypedefParam)methodReturnBlockParam
+{
+    return ^(NSObject *obj){
+        return [UIViewController new];
+    };
+}
+
+- (BlockTypedefParam)methodReturnBlockParam01
+{
+    return ^UIViewController *(NSObject *obj){
+        return [UIViewController new];
+    };
+}
+
+@end
+
+
+```
+
+### 参考资料
+- [国外小哥写的Block用法](http://fuckingblocksyntax.com/)
+
+
+
